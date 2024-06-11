@@ -1,29 +1,23 @@
-let pronouns = ["the", "our", "my", "la"];
-let adjetives = ["great", "big", "last", "cueva"];
-let noun = ["jogger", "racoon", "pizza", "Ofus", "delTio"];
-let extensions = [".com", ".net", ".us", ".io"];
+let pronouns = ["the", "my"];
+let adjectives = ["great", "last", "house"];
+let nouns = ["jogger", "Ofus"];
+let extensions = ["com", "net", "us"];
 
 const names = [];
 
 for (const pronoun of pronouns) {
-  for (const adj of adjetives) {
-    let thirdIndex = 0;
-    while (thirdIndex < noun.length) {
-      for (
-        let fourthIndex = 0;
-        fourthIndex < extensions.length;
-        fourthIndex++
-      ) {
-        let domainName = pronoun + adj + noun[thirdIndex];
-        if (domainName.endsWith(extensions[fourthIndex].replace(".", ""))) {
+  for (const adj of adjectives) {
+    for (const noun of nouns) {
+      for (const extention of extensions) {
+        let domainName = pronoun + adj + noun;
+        if (domainName.endsWith(extention)) {
           domainName = domainName.slice(
             0,
-            domainName.length - extensions[fourthIndex].replace(".", "").length
+            domainName.length - extention.length
           );
         }
-        names.push(`${domainName}${extensions[fourthIndex]}`);
+        names.push(`${domainName}.${extention}`);
       }
-      thirdIndex++;
     }
   }
 }
